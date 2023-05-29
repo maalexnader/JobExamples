@@ -1,0 +1,27 @@
+struct TabBarFillShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+
+        path.move(to: CGPoint(x: rect.minX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.midX - 28, y: rect.minY))
+        path.addArc(center: CGPoint(x: rect.midX, y: rect.midY - 3 - 34 + 14), radius: 32, startAngle: .degrees(-143.5), endAngle: .degrees(-36.5), clockwise: false)
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+        path.closeSubpath()
+        return path
+    }
+}
+
+struct TabBarBorderShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+
+        path.move(to: CGPoint(x: rect.minX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.midX - 28, y: rect.minY))
+        path.addArc(center: CGPoint(x: rect.midX, y: rect.midY - 3 - 34 + 14), radius: 32, startAngle: .degrees(-143.5), endAngle: .degrees(-36.5), clockwise: false)
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
+
+        return path
+    }
+}
