@@ -1,0 +1,78 @@
+struct ItemContainer: View {
+    @State var item: Item
+    @Binding var selectedItem: Item
+
+    var body: some View {
+        if item.isCreate {
+            Menu {
+                Button(action: { }) {
+                    HStack {
+                        Text("Post Case")
+                        Spacer()
+                        Image(.menuPostCase)
+                            .resizable()
+                    }
+                }
+                Button(action: { }) {
+                    HStack {
+                        Text("Post Request")
+                        Spacer()
+                        Image(.menuPostRequest)
+                            .resizable()
+                    }
+                }
+            } label: {
+                VStack(alignment: .center) {
+                    Image(icon)
+                        .resizable()
+                        .frame(width: 34, height: 34)
+                }
+                .frame(width: 64, height: 64)
+            }
+        } else {
+            VStack(spacing: 2) {
+                Spacer()
+                VStack(alignment: .center) {
+                    Spacer()
+                    Image(icon)
+                        .foregroundColor(item == selectedItem ? .action : .notSelected)
+                    Spacer()
+                }
+                .frame(width: 24, height: 24)
+                Text(title)
+                    .style(.subtitle)
+                    .foregroundColor(item == selectedItem ? .action : .notSelected)
+            }
+        }
+    }
+
+    var icon: UI.Icon {
+        switch item {
+        case .cases:
+            return .tabBarCases
+        case .requests:
+            return .tabBarRequests
+        case .create:
+            return .tabBarCreate
+        case .experts:
+            return .tabBarExperts
+        case .profile:
+            return .tabBarProfile
+        }
+    }
+
+    var title: LocalizedStringKey {
+        switch item {
+        case .cases:
+            return LocalizedStringKey("Cases")
+        case .requests:
+            return LocalizedStringKey("Requests")
+        case .create:
+            return LocalizedStringKey("")
+        case .experts:
+            return LocalizedStringKey("Experts")
+        case .profile:
+            return LocalizedStringKey("Profile")
+        }
+    }
+}
